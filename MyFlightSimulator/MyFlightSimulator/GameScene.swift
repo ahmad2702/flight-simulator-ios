@@ -12,16 +12,37 @@ import GameplayKit
 class GameScene: SKScene {
     
     var flight = SKSpriteNode()
+    var background = SKSpriteNode()
+    
 
     override func didMove(to view: SKView) {
         
+        let backgroundTexture = SKTexture(imageNamed: "sky1")
+        background = SKSpriteNode(texture: backgroundTexture)
+        background.position = CGPoint(x: self.frame.midX, y: self.frame.midY)
+        background.size.height = self.frame.height
+        background.size.width = self.frame.width
+        self.addChild(background)
+        
         let flightTexture = SKTexture(imageNamed: "plane1")
-        
         flight = SKSpriteNode(texture: flightTexture)
-        
         flight.position = CGPoint(x: self.frame.midX, y: self.frame.midY)
-        
         self.addChild(flight)
+        
+        
+        
+        /**
+        let screen = UIScreen.main
+        let screenWidth = screen.bounds.size.width
+        let height = screen.bounds.size.height
+        print("Screen: \(screenWidth) x \(height)")
+        
+        let colorViewWidth = colorView.frame.size.width
+        print("ColorView: \(colorViewWidth)")
+        
+        
+        colorView.center.x = colorViewWidth/2 + CGFloat(sender.value) * (screenWidth-colorViewWidth)
+        */
 
     }
     
