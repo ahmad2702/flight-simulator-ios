@@ -49,7 +49,14 @@ class GameScene: SKScene {
 
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-       
+        for touch: AnyObject in touches {
+            let location = touch.location(in: self)
+            
+            flight.position.x = location.x
+            
+        }
+        
+        
     }
     
 
