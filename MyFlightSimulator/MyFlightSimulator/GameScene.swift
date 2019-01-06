@@ -11,22 +11,39 @@ import GameplayKit
 
 class GameScene: SKScene {
     
-    var flight = SKSpriteNode()
     var background = SKSpriteNode()
-    
+    var flight = SKSpriteNode()
 
     override func didMove(to view: SKView) {
         
-        let backgroundTexture = SKTexture(imageNamed: "sky1")
+        let backgroundTexture = SKTexture(imageNamed: "sky2")
         background = SKSpriteNode(texture: backgroundTexture)
         background.position = CGPoint(x: self.frame.midX, y: self.frame.midY)
         background.size.height = self.frame.height
         background.size.width = self.frame.width
         self.addChild(background)
         
-        let flightTexture = SKTexture(imageNamed: "plane1")
+        spawnClouds()
+        spawnClouds()
+        spawnClouds()
+        spawnClouds()
+        spawnClouds()
+        spawnClouds()
+        spawnClouds()
+        spawnClouds()
+        spawnClouds()
+        spawnClouds()
+        spawnClouds()
+        spawnClouds()
+
+        
+        //var cloudTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: Selector("spawnClouds"), userInfo: nil, repeats: true)
+        
+        
+        let flightTexture = SKTexture(imageNamed: "plane2")
         flight = SKSpriteNode(texture: flightTexture)
-        flight.position = CGPoint(x: self.frame.midX, y: self.frame.minY+flight.size.height)
+        flight.position = CGPoint(x: self.frame.midX, y: self.frame.minY+flight.size.height*2)
+        //flight.position = CGPoint(x: self.frame.midX, y: self.frame.midY)
         self.addChild(flight)
         
         
@@ -46,7 +63,19 @@ class GameScene: SKScene {
 
     }
     
-
+    func spawnClouds(){
+        var cloud = SKSpriteNode()
+        let cloudTexture = SKTexture(imageNamed: "cloud2")
+        cloud = SKSpriteNode(texture: cloudTexture)
+        let minValue = self.size.width / 8
+        let maxValue = self.size.width - 20
+        let spawnPoint = UInt32(maxValue-minValue)
+        cloud.position = CGPoint(x: CGFloat(arc4random_uniform(spawnPoint)), y: self.size.height)
+        
+        let action = SKAction.moveTo(y: -30, duration: 3.0)
+        cloud.run(SKAction.repeatForever(action))
+        self.addChild(cloud)
+    }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         for touch: AnyObject in touches {

@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A66FFBC621E24E4500057A73 /* plane2.png in Resources */ = {isa = PBXBuildFile; fileRef = A66FFBC521E24E4500057A73 /* plane2.png */; };
+		A66FFBC821E2506500057A73 /* sky2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A66FFBC721E2506500057A73 /* sky2.jpg */; };
+		A66FFBCA21E250C200057A73 /* cloud2.png in Resources */ = {isa = PBXBuildFile; fileRef = A66FFBC921E250C200057A73 /* cloud2.png */; };
 		A68A42E021E17A96004BA0A4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A68A42DF21E17A96004BA0A4 /* AppDelegate.swift */; };
 		A68A42E221E17A96004BA0A4 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = A68A42E121E17A96004BA0A4 /* GameScene.sks */; };
 		A68A42E421E17A96004BA0A4 /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = A68A42E321E17A96004BA0A4 /* Actions.sks */; };
@@ -21,6 +24,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A66FFBC521E24E4500057A73 /* plane2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = plane2.png; path = "../../../../../Desktop/icons/plane/Neuer Ordner/plane2.png"; sourceTree = "<group>"; };
+		A66FFBC721E2506500057A73 /* sky2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = sky2.jpg; sourceTree = "<group>"; };
+		A66FFBC921E250C200057A73 /* cloud2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cloud2.png; sourceTree = "<group>"; };
 		A68A42DC21E17A96004BA0A4 /* MyFlightSimulator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyFlightSimulator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A68A42DF21E17A96004BA0A4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A68A42E121E17A96004BA0A4 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -73,8 +79,11 @@
 				A68A42E721E17A96004BA0A4 /* GameViewController.swift */,
 				A68A42E921E17A96004BA0A4 /* Main.storyboard */,
 				A68A42FB21E1827D004BA0A4 /* sky1.jpg */,
+				A66FFBC721E2506500057A73 /* sky2.jpg */,
 				A68A42F821E17E29004BA0A4 /* cloud1.jpg */,
+				A66FFBC921E250C200057A73 /* cloud2.png */,
 				A68A42F721E17E29004BA0A4 /* plane1.png */,
+				A66FFBC521E24E4500057A73 /* plane2.png */,
 				A68A42EC21E17A97004BA0A4 /* Assets.xcassets */,
 				A68A42EE21E17A97004BA0A4 /* LaunchScreen.storyboard */,
 				A68A42F121E17A97004BA0A4 /* Info.plist */,
@@ -145,7 +154,10 @@
 				A68A42FA21E17E29004BA0A4 /* cloud1.jpg in Resources */,
 				A68A42ED21E17A97004BA0A4 /* Assets.xcassets in Resources */,
 				A68A42F021E17A97004BA0A4 /* LaunchScreen.storyboard in Resources */,
+				A66FFBC821E2506500057A73 /* sky2.jpg in Resources */,
 				A68A42F921E17E29004BA0A4 /* plane1.png in Resources */,
+				A66FFBC621E24E4500057A73 /* plane2.png in Resources */,
+				A66FFBCA21E250C200057A73 /* cloud2.png in Resources */,
 				A68A42E421E17A96004BA0A4 /* Actions.sks in Resources */,
 				A68A42FC21E1827D004BA0A4 /* sky1.jpg in Resources */,
 			);
