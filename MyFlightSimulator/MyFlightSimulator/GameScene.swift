@@ -13,6 +13,8 @@ class GameScene: SKScene {
     
     var background = SKSpriteNode()
     var flight = SKSpriteNode()
+    
+    var cloudTimer = Timer()
 
     override func didMove(to view: SKView) {
         
@@ -21,11 +23,8 @@ class GameScene: SKScene {
         background.position = CGPoint(x: self.frame.midX, y: self.frame.midY)
         background.size.height = self.frame.height
         background.size.width = self.frame.width
-        self.addChild(background)
+        //self.addChild(background)
 
-        
-        //var cloudTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: Selector("spawnClouds"), userInfo: nil, repeats: true)
-        
         
         let flightTexture = SKTexture(imageNamed: "plane2")
         flight = SKSpriteNode(texture: flightTexture)
@@ -33,7 +32,10 @@ class GameScene: SKScene {
         //flight.position = CGPoint(x: self.frame.midX, y: self.frame.midY)
         self.addChild(flight)
         
-        addCloud()
+        
+        cloudTimer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(addCloud), userInfo: nil, repeats: true)
+
+        
 
     }
     
@@ -51,11 +53,14 @@ class GameScene: SKScene {
         self.addChild(cloud)
     }
     
-    func addCloud(){
+    @objc func addCloud(){
     
         let cloud = SKSpriteNode(imageNamed: "cloud2")
         cloud.setScale(1.0)
-        cloud.position = CGPoint(x: 100, y: self.frame.maxY)
+        
+        let randomX = CGFloat(arc4random_uniform(UInt32(self.size.width)))-self.size.width/2
+        
+        cloud.position = CGPoint(x: randomX, y: self.frame.maxY)
         self.addChild(cloud)
         
         let moveDown = SKAction.moveTo(y: -cloud.size.height*10, duration: 3)
