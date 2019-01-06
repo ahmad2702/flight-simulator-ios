@@ -37,7 +37,8 @@ class GameScene: SKScene {
         
         let flightTexture = SKTexture(imageNamed: "plane2")
         flight = SKSpriteNode(texture: flightTexture)
-        flight.position = CGPoint(x: self.frame.midX, y: self.frame.minY+flight.size.height*2)
+        flight.position = CGPoint(x: self.frame.midX, y: self.frame.minY+flight.size.height)
+        flight.setScale(0.5)
         flight.physicsBody = SKPhysicsBody(circleOfRadius: flight.size.width/2)
         flight.physicsBody?.affectedByGravity = false
         flight.physicsBody?.categoryBitMask = physicsBodyNumbers.flightNumber
@@ -68,11 +69,11 @@ class GameScene: SKScene {
     @objc func addCloud(){
     
         let cloud = SKSpriteNode(imageNamed: "cloud2")
-        cloud.setScale(1.0)
+        cloud.setScale(0.5)
         cloud.physicsBody = SKPhysicsBody(circleOfRadius: cloud.size.width/2)
         cloud.physicsBody?.affectedByGravity = false
         cloud.physicsBody?.categoryBitMask = physicsBodyNumbers.cloudNumber
-        let randomX = CGFloat(arc4random_uniform(UInt32(self.size.width)))-self.size.width/2
+        let randomX = CGFloat(arc4random_uniform(UInt32(self.size.width)))
         cloud.position = CGPoint(x: randomX, y: self.frame.maxY)
         self.addChild(cloud)
         

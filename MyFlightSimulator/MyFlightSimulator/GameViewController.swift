@@ -14,16 +14,16 @@ class GameViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        let scene1 = GameScene(size: self.view.bounds.size)
+        let view = self.view as! SKView
+
+        view.presentScene(scene1)
+
         
-        if let view = self.view as! SKView? {
-            // Load the SKScene from 'GameScene.sks'
-            if let scene = SKScene(fileNamed: "GameScene") {
-                // Set the scale mode to scale to fit the window
-                scene.scaleMode = .aspectFill
-                
-                // Present the scene
-                view.presentScene(scene)
-            }
+        
+        
+        
             
             view.ignoresSiblingOrder = true
             
@@ -31,10 +31,10 @@ class GameViewController: UIViewController {
             view.showsNodeCount = true
             
             view.showsPhysics = true
-            
-        }
-    }
 
+    }
+    
+    /**
     override var shouldAutorotate: Bool {
         return true
     }
@@ -50,4 +50,6 @@ class GameViewController: UIViewController {
     override var prefersStatusBarHidden: Bool {
         return true
     }
+    */
+    
 }
