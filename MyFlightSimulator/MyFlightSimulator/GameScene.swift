@@ -22,19 +22,6 @@ class GameScene: SKScene {
         background.size.height = self.frame.height
         background.size.width = self.frame.width
         self.addChild(background)
-        
-        spawnClouds()
-        spawnClouds()
-        spawnClouds()
-        spawnClouds()
-        spawnClouds()
-        spawnClouds()
-        spawnClouds()
-        spawnClouds()
-        spawnClouds()
-        spawnClouds()
-        spawnClouds()
-        spawnClouds()
 
         
         //var cloudTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: Selector("spawnClouds"), userInfo: nil, repeats: true)
@@ -46,20 +33,7 @@ class GameScene: SKScene {
         //flight.position = CGPoint(x: self.frame.midX, y: self.frame.midY)
         self.addChild(flight)
         
-        
-        
-        /**
-        let screen = UIScreen.main
-        let screenWidth = screen.bounds.size.width
-        let height = screen.bounds.size.height
-        print("Screen: \(screenWidth) x \(height)")
-        
-        let colorViewWidth = colorView.frame.size.width
-        print("ColorView: \(colorViewWidth)")
-        
-        
-        colorView.center.x = colorViewWidth/2 + CGFloat(sender.value) * (screenWidth-colorViewWidth)
-        */
+        addCloud()
 
     }
     
@@ -75,6 +49,21 @@ class GameScene: SKScene {
         let action = SKAction.moveTo(y: -30, duration: 3.0)
         cloud.run(SKAction.repeatForever(action))
         self.addChild(cloud)
+    }
+    
+    func addCloud(){
+    
+        let cloud = SKSpriteNode(imageNamed: "cloud2")
+        cloud.setScale(1.0)
+        cloud.position = CGPoint(x: 100, y: self.frame.maxY)
+        self.addChild(cloud)
+        
+        let moveDown = SKAction.moveTo(y: -cloud.size.height*10, duration: 3)
+        moveDown.speed = 1.0
+        let delete = SKAction.removeFromParent()
+        
+        cloud.run(SKAction.sequence([moveDown, delete]))
+        
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
