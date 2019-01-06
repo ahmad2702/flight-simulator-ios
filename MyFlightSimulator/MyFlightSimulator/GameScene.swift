@@ -15,8 +15,17 @@ class GameScene: SKScene {
     var flight = SKSpriteNode()
     
     var cloudTimer = Timer()
+    
+    struct physicsBodyNumbers{
+        static let flightNumber: UInt32 = 0b1 // 1
+        static let cloudNumber: UInt32 = 0b10 // 2
+        
+        static let emptyNumber: UInt32 = 0b1000 // 8
+    }
 
     override func didMove(to view: SKView) {
+        
+        self.physicsWorld.gravity = CGVector(dx: 0, dy: -9.8)
         
         let backgroundTexture = SKTexture(imageNamed: "sky2")
         background = SKSpriteNode(texture: backgroundTexture)
@@ -29,7 +38,10 @@ class GameScene: SKScene {
         let flightTexture = SKTexture(imageNamed: "plane2")
         flight = SKSpriteNode(texture: flightTexture)
         flight.position = CGPoint(x: self.frame.midX, y: self.frame.minY+flight.size.height*2)
-        //flight.position = CGPoint(x: self.frame.midX, y: self.frame.midY)
+        flight.physicsBody = SKPhysicsBody(circleOfRadius: flight.size.width/2)
+        flight.physicsBody?.affectedByGravity = false
+        flight.physicsBody?.categoryBitMask = physicsBodyNumbers.flightNumber
+        flight.physicsBody?.collisionBitMask = physicsBodyNumbers.emptyNumber
         self.addChild(flight)
         
         
@@ -57,16 +69,16 @@ class GameScene: SKScene {
     
         let cloud = SKSpriteNode(imageNamed: "cloud2")
         cloud.setScale(1.0)
-        
+        cloud.physicsBody = SKPhysicsBody(circleOfRadius: cloud.size.width/2)
+        cloud.physicsBody?.affectedByGravity = false
+        cloud.physicsBody?.categoryBitMask = physicsBodyNumbers.cloudNumber
         let randomX = CGFloat(arc4random_uniform(UInt32(self.size.width)))-self.size.width/2
-        
         cloud.position = CGPoint(x: randomX, y: self.frame.maxY)
         self.addChild(cloud)
         
         let moveDown = SKAction.moveTo(y: -cloud.size.height*10, duration: 3)
         moveDown.speed = 1.0
         let delete = SKAction.removeFromParent()
-        
         cloud.run(SKAction.sequence([moveDown, delete]))
         
     }
