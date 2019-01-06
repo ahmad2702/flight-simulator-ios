@@ -26,7 +26,7 @@ class GameScene: SKScene {
         
         let flightTexture = SKTexture(imageNamed: "plane1")
         flight = SKSpriteNode(texture: flightTexture)
-        flight.position = CGPoint(x: self.frame.midX, y: self.frame.midY)
+        flight.position = CGPoint(x: self.frame.midX, y: self.frame.minY+flight.size.height)
         self.addChild(flight)
         
         
