@@ -15,7 +15,7 @@ class GameViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let scene1 = GameScene(size: self.view.bounds.size)
+        let scene1 = MainMenu(size: self.view.bounds.size)
         let view = self.view as! SKView
 
         view.presentScene(scene1)
