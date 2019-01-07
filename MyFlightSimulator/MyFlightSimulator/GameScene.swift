@@ -9,7 +9,7 @@
 import SpriteKit
 import GameplayKit
 
-class GameScene: SKScene {
+class GameScene: SKScene, SKPhysicsContactDelegate {
     
     var background = SKSpriteNode()
     var flight = SKSpriteNode()
@@ -26,6 +26,7 @@ class GameScene: SKScene {
     override func didMove(to view: SKView) {
         
         self.physicsWorld.gravity = CGVector(dx: 0, dy: -9.8)
+        self.physicsWorld.contactDelegate = self
         
         let backgroundTexture = SKTexture(imageNamed: "sky2")
         background = SKSpriteNode(texture: backgroundTexture)
@@ -43,6 +44,7 @@ class GameScene: SKScene {
         flight.physicsBody?.affectedByGravity = false
         flight.physicsBody?.categoryBitMask = physicsBodyNumbers.flightNumber
         flight.physicsBody?.collisionBitMask = physicsBodyNumbers.emptyNumber
+        flight.physicsBody?.contactTestBitMask = physicsBodyNumbers.cloudNumber
         self.addChild(flight)
         
         
@@ -68,7 +70,7 @@ class GameScene: SKScene {
     
     @objc func addCloud(){
         
-        var cloudTexture = SKTexture(imageNamed: "cloud2")
+        let cloudTexture = SKTexture(imageNamed: "cloud2")
         let cloud = SKSpriteNode(texture: cloudTexture)
         cloud.setScale(0.5)
         cloud.physicsBody = SKPhysicsBody(texture: cloudTexture, size: cloud.size)
@@ -92,10 +94,41 @@ class GameScene: SKScene {
             flight.position.x = location.x
             
         }
-        
-        
     }
     
+    func getContactFlightVSCloud(flight: SKSpriteNode, cloud: SKSpriteNode){
+        
+        flight.run(SKAction.repeat(SKAction.sequence([SKAction.fadeAlpha(to: 0.1, duration: 0.1), SKAction.fadeAlpha(to: 1.0, duration: 0.1)]), count: 5))
+        
+    }
+
+    
+    
+    func didBegin(_ contact: SKPhysicsContact) {
+        //print("Kontakt!")
+        
+        let contactMask = contact.bodyA.categoryBitMask | contact.bodyB.categoryBitMask
+        
+        switch contactMask {
+        case physicsBodyNumbers.flightNumber | physicsBodyNumbers.cloudNumber:
+            
+            guard let node1 = contact.bodyA.node else {
+                print("Nicht gefunden")
+                return
+            }
+            
+            guard let node2 = contact.bodyB.node else {
+                print("Nicht gefunden")
+                return
+            }
+            
+            getContactFlightVSCloud(flight: node1 as! SKSpriteNode, cloud: node2 as! SKSpriteNode)
+        default:
+            print("----")
+        }
+        
+        //self.flight.colorBlendFactor = 0.5
+    }
 
     
     override func update(_ currentTime: TimeInterval) {
