@@ -15,11 +15,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var flight = SKSpriteNode()
     var labelScore = SKLabelNode()
     
+    var startTimer = Timer()
     var cloudTimer = Timer()
     var flightTimer = Timer()
     
-    var score: Int = 0
+    var waitTime: Int = 5
+    var isGameStarted = false
     
+    var score: Int = 0
     var nullSpeed: Double = 235.0       // in km/h
     var bremse: Double = 1/4            //
     var currentSpeed: Double = 847.0    // in km/h
@@ -61,17 +64,36 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.addChild(flight)
         
         labelScore = SKLabelNode(fontNamed:"ArialMT")
-        labelScore.position = CGPoint(x: self.frame.midX, y: self.frame.midY)
-        labelScore.text = "YOUR SCORE"
+        labelScore.position = CGPoint(x: self.frame.midX, y: self.frame.maxY-50)
+        labelScore.text = "Wait..."
         labelScore.fontSize = 18;
-        labelScore.fontColor = SKColor.black
+        labelScore.fontColor = SKColor.white
+        self.addChild(labelScore)
         
         
-        
-        cloudTimer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(addCloud), userInfo: nil, repeats: true)
-        flightTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(checkDistance), userInfo: nil, repeats: true)
+        startTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(startWaitTimer), userInfo: nil, repeats: true)
+        //cloudTimer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(addCloud), userInfo: nil, repeats: true)
+        //flightTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(checkDistance), userInfo: nil, repeats: true)
         
 
+    }
+    
+    @objc func startWaitTimer(){
+        if(!isGameStarted){
+            if(currentTime<=waitTime){
+                let seconds = waitTime - currentTime
+                labelScore.text = "\(seconds)"
+                currentTime += 1
+            }else{
+                currentTime = 0
+                labelScore.text = "START!!!"
+                isGameStarted = true
+                startTimer = Timer()
+                cloudTimer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(addCloud), userInfo: nil, repeats: true)
+                flightTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(checkDistance), userInfo: nil, repeats: true)
+
+            }
+        }
     }
     
     @objc func addCloud(){
