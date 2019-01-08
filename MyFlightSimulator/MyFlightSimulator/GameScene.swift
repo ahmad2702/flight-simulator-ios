@@ -106,7 +106,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         cloud.physicsBody?.affectedByGravity = false
         cloud.physicsBody?.categoryBitMask = physicsBodyNumbers.cloudNumber
         let randomX = CGFloat(arc4random_uniform(UInt32(self.size.width)))
-        cloud.position = CGPoint(x: randomX, y: self.frame.maxY)
+        cloud.position = CGPoint(x: randomX, y: self.frame.maxY-80)
         self.addChild(cloud)
         
         let moveDown = SKAction.moveTo(y: -cloud.size.height*10, duration: 3)

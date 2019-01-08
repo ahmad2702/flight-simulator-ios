@@ -44,11 +44,8 @@ class MainMenu: SKScene {
                 let gameScene = GameScene(size: self.size)
                 self.view?.presentScene(gameScene, transition: transition)
             } else if(atPoint(locationUser) == scoreButton){
-                //let old = Scores.getAllScores()
-                //print(old)
-                let transition = SKTransition.crossFade(withDuration: 3)
                 let gameScene = HighScoresScene(size: self.size)
-                self.view?.presentScene(gameScene, transition: transition)
+                self.view?.presentScene(gameScene)
             }
             
         }

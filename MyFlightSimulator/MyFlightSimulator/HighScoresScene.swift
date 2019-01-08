@@ -24,7 +24,7 @@ class HighScoresScene: SKScene {
         let label1 = SKLabelNode(fontNamed:"ArialMT")
         label1.position = CGPoint(x: self.frame.midX, y: self.frame.midY-50)
         let scoresData = Scores.printAllData()
-        print(scoresData)
+        //print(scoresData)
         label1.text = "\(scoresData)"
         label1.fontSize = 20;
         label1.fontColor = SKColor.black
@@ -49,9 +49,8 @@ class HighScoresScene: SKScene {
             
             if (atPoint(locationUser) == button){
                 print("To main menu clicked!")
-                let transition = SKTransition.crossFade(withDuration: 3)
                 let gameScene = MainMenu(size: self.size)
-                self.view?.presentScene(gameScene, transition: transition)
+                self.view?.presentScene(gameScene)
             }
             
         }

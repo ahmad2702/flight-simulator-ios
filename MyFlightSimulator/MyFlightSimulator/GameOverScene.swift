@@ -15,10 +15,7 @@ class GameOverScene: SKScene {
     let button = SKSpriteNode(imageNamed: "main_menu")
     
     func setScore(number: Double){
-        
         score = number
-        Scores.updateScores(newScore: number)
-        
     }
     
     override func didMove(to view: SKView) {
@@ -52,10 +49,10 @@ class GameOverScene: SKScene {
             let locationUser = touch.location(in: self)
             
             if (atPoint(locationUser) == button){
+                Scores.updateScores(newScore: score)
                 print("To main menu clicked!")
-                let transition = SKTransition.crossFade(withDuration: 3)
                 let gameScene = MainMenu(size: self.size)
-                self.view?.presentScene(gameScene, transition: transition)
+                self.view?.presentScene(gameScene)
             }
             
         }
