@@ -14,13 +14,23 @@ class HighScoresScene: SKScene {
     
     override func didMove(to view: SKView) {
         
+        let label = SKLabelNode(fontNamed:"ArialMT")
+        label.position = CGPoint(x: self.frame.midX, y: self.frame.maxY-130)
+        label.text = "HIGH SCORES"
+        label.fontSize = 18;
+        label.fontColor = SKColor.black
+        self.addChild(label)
+        
         let label1 = SKLabelNode(fontNamed:"ArialMT")
-        label1.position = CGPoint(x: self.frame.midX, y: self.frame.midY-30)
+        label1.position = CGPoint(x: self.frame.midX, y: self.frame.midY-50)
         let scoresData = Scores.printAllData()
         print(scoresData)
         label1.text = "\(scoresData)"
-        label1.fontSize = 12;
+        label1.fontSize = 20;
         label1.fontColor = SKColor.black
+        label1.lineBreakMode = NSLineBreakMode.byWordWrapping
+        label1.numberOfLines = 12
+        label1.preferredMaxLayoutWidth = 500
         self.addChild(label1)
         
         button.position = CGPoint(x: self.frame.midX, y: self.frame.minY+50)
