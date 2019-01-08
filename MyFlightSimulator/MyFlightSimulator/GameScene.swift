@@ -66,7 +66,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         labelScore = SKLabelNode(fontNamed:"ArialMT")
         labelScore.position = CGPoint(x: self.frame.midX, y: self.frame.maxY-50)
         labelScore.text = "Wait..."
-        labelScore.fontSize = 18;
+        labelScore.fontSize = 14;
         labelScore.fontColor = SKColor.white
         self.addChild(labelScore)
         
@@ -168,7 +168,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             getContactFlightVSCloud(flight: node1 as! SKSpriteNode, cloud: node2 as! SKSpriteNode)
             node2.removeFromParent()
             score += 1
-            currentSpeed = currentSpeed - currentSpeed * bremse
+            let tmpCurrentSpeed = currentSpeed - currentSpeed * bremse
+            currentSpeed = Double(round(1000*tmpCurrentSpeed)/1000)
             gameOver(explicit: false)
             //print(score)
         default:
@@ -184,8 +185,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if (currentTime <= maxTime){
             let currentSpeedInMeter: Double = currentSpeed*10/36
             let distanceInMeter = currentSpeedInMeter * Double(currentTime)
-            distance = distance + distanceInMeter / 1000
-            print("Time: \(currentTime), Distance: \(distance), Speed: \(currentSpeed)")
+            let tmpDistance = distance + distanceInMeter / 1000
+            distance = Double(round(1000*tmpDistance)/1000)
+            let text:String = "Time: \(currentTime)/\(maxTime)s, Distance: \(distance) km, Speed: \(currentSpeed) km/h"
+            labelScore.text = text
+            print(text)
             currentTime += 1
         } else {
             gameOver(explicit: true)
