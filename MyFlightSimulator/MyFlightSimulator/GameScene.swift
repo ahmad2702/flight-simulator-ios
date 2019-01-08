@@ -16,6 +16,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     var cloudTimer = Timer()
     
+    var score: Int = 0
+    
     struct physicsBodyNumbers{
         static let flightNumber: UInt32 = 0b1 // 1
         static let cloudNumber: UInt32 = 0b10 // 2
@@ -52,20 +54,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
         
 
-    }
-    
-    func spawnClouds(){
-        var cloud = SKSpriteNode()
-        let cloudTexture = SKTexture(imageNamed: "cloud2")
-        cloud = SKSpriteNode(texture: cloudTexture)
-        let minValue = self.size.width / 8
-        let maxValue = self.size.width - 20
-        let spawnPoint = UInt32(maxValue-minValue)
-        cloud.position = CGPoint(x: CGFloat(arc4random_uniform(spawnPoint)), y: self.size.height)
-        
-        let action = SKAction.moveTo(y: -30, duration: 3.0)
-        cloud.run(SKAction.repeatForever(action))
-        self.addChild(cloud)
     }
     
     @objc func addCloud(){
@@ -123,6 +111,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             }
             
             getContactFlightVSCloud(flight: node1 as! SKSpriteNode, cloud: node2 as! SKSpriteNode)
+            node2.removeFromParent()
+            score += 1
+            print(score)
         default:
             print("----")
         }
