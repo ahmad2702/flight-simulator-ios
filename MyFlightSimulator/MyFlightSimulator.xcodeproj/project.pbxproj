@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A646A7A121E5140900197826 /* Scores.swift in Sources */ = {isa = PBXBuildFile; fileRef = A646A7A021E5140900197826 /* Scores.swift */; };
+		A646A7A321E519C500197826 /* HighScoresScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = A646A7A221E519C500197826 /* HighScoresScene.swift */; };
 		A656495521E4BDEB00ACF01F /* GameOverScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = A656495421E4BDEB00ACF01F /* GameOverScene.swift */; };
 		A656495721E4DF1800ACF01F /* home_button.png in Resources */ = {isa = PBXBuildFile; fileRef = A656495621E4DF1800ACF01F /* home_button.png */; };
 		A656495B21E4E18000ACF01F /* high_scores.png in Resources */ = {isa = PBXBuildFile; fileRef = A656495821E4E17F00ACF01F /* high_scores.png */; };
@@ -32,6 +34,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A646A7A021E5140900197826 /* Scores.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scores.swift; sourceTree = "<group>"; };
+		A646A7A221E519C500197826 /* HighScoresScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighScoresScene.swift; sourceTree = "<group>"; };
 		A656495421E4BDEB00ACF01F /* GameOverScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOverScene.swift; sourceTree = "<group>"; };
 		A656495621E4DF1800ACF01F /* home_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home_button.png; sourceTree = "<group>"; };
 		A656495821E4E17F00ACF01F /* high_scores.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = high_scores.png; sourceTree = "<group>"; };
@@ -94,6 +98,8 @@
 				A66FFBCD21E2C0AE00057A73 /* MainMenu.swift */,
 				A68A42E521E17A96004BA0A4 /* GameScene.swift */,
 				A656495421E4BDEB00ACF01F /* GameOverScene.swift */,
+				A646A7A021E5140900197826 /* Scores.swift */,
+				A646A7A221E519C500197826 /* HighScoresScene.swift */,
 				A68A42E721E17A96004BA0A4 /* GameViewController.swift */,
 				A68A42E921E17A96004BA0A4 /* Main.storyboard */,
 				A692D71A21E50C6F00A34597 /* logo.png */,
@@ -204,6 +210,8 @@
 				A68A42E621E17A96004BA0A4 /* GameScene.swift in Sources */,
 				A68A42E821E17A96004BA0A4 /* GameViewController.swift in Sources */,
 				A68A42E021E17A96004BA0A4 /* AppDelegate.swift in Sources */,
+				A646A7A121E5140900197826 /* Scores.swift in Sources */,
+				A646A7A321E519C500197826 /* HighScoresScene.swift in Sources */,
 				A66FFBCE21E2C0AE00057A73 /* MainMenu.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
