@@ -184,7 +184,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
         if (currentTime <= maxTime){
             let currentSpeedInMeter: Double = currentSpeed*10/36
-            let distanceInMeter = currentSpeedInMeter * Double(currentTime)
+            let distanceInMeter = currentSpeedInMeter //* Double(currentTime)
             let tmpDistance = distance + distanceInMeter / 1000
             distance = Double(round(1000*tmpDistance)/1000)
             let text:String = "Time: \(currentTime)/\(maxTime)s, Distance: \(distance) km, Speed: \(currentSpeed) km/h"

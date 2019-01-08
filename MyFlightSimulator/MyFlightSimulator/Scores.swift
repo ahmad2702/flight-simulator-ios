@@ -22,7 +22,7 @@ class Scores {
         
         var result:String = ""
         for (index, element) in highScores.enumerated() {
-            result += "\(index+1): \(element)\n"
+            result += "\(index+1): \(element) km\n"
         }
         return result
     }
