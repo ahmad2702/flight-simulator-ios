@@ -28,6 +28,7 @@
 		A68A42F921E17E29004BA0A4 /* plane1.png in Resources */ = {isa = PBXBuildFile; fileRef = A68A42F721E17E29004BA0A4 /* plane1.png */; };
 		A68A42FA21E17E29004BA0A4 /* cloud1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A68A42F821E17E29004BA0A4 /* cloud1.jpg */; };
 		A68A42FC21E1827D004BA0A4 /* sky1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A68A42FB21E1827D004BA0A4 /* sky1.jpg */; };
+		A692D71B21E50C6F00A34597 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = A692D71A21E50C6F00A34597 /* logo.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,6 +55,7 @@
 		A68A42F721E17E29004BA0A4 /* plane1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = plane1.png; sourceTree = "<group>"; };
 		A68A42F821E17E29004BA0A4 /* cloud1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = cloud1.jpg; sourceTree = "<group>"; };
 		A68A42FB21E1827D004BA0A4 /* sky1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = sky1.jpg; sourceTree = "<group>"; };
+		A692D71A21E50C6F00A34597 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +96,7 @@
 				A656495421E4BDEB00ACF01F /* GameOverScene.swift */,
 				A68A42E721E17A96004BA0A4 /* GameViewController.swift */,
 				A68A42E921E17A96004BA0A4 /* Main.storyboard */,
+				A692D71A21E50C6F00A34597 /* logo.png */,
 				A66FFBCB21E2C03D00057A73 /* play_button1.png */,
 				A656495621E4DF1800ACF01F /* home_button.png */,
 				A68A42FB21E1827D004BA0A4 /* sky1.jpg */,
@@ -175,6 +178,7 @@
 				A68A42E221E17A96004BA0A4 /* GameScene.sks in Resources */,
 				A656495D21E4E18000ACF01F /* play.png in Resources */,
 				A68A42FA21E17E29004BA0A4 /* cloud1.jpg in Resources */,
+				A692D71B21E50C6F00A34597 /* logo.png in Resources */,
 				A68A42ED21E17A97004BA0A4 /* Assets.xcassets in Resources */,
 				A66FFBCC21E2C03D00057A73 /* play_button1.png in Resources */,
 				A68A42F021E17A97004BA0A4 /* LaunchScreen.storyboard in Resources */,

@@ -13,6 +13,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     var background = SKSpriteNode()
     var flight = SKSpriteNode()
+    var labelScore = SKLabelNode()
     
     var cloudTimer = Timer()
     var flightTimer = Timer()
@@ -23,14 +24,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var bremse: Double = 1/4            //
     var currentSpeed: Double = 847.0    // in km/h
     var currentTime: Int = 0            // in Sekunden
-    var maxTime: Int = 30               // in Sekunden
+    var maxTime: Int = 120              // in Sekunden
     var distance: Double = 0            // in km
     
     
     struct physicsBodyNumbers{
         static let flightNumber: UInt32 = 0b1 // 1
         static let cloudNumber: UInt32 = 0b10 // 2
-        
         static let emptyNumber: UInt32 = 0b1000 // 8
     }
 
@@ -44,12 +44,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         background.position = CGPoint(x: self.frame.midX, y: self.frame.midY)
         background.size.height = self.frame.height
         background.size.width = self.frame.width
+        background.zPosition = 0.0
         //self.addChild(background)
 
         
         let flightTexture = SKTexture(imageNamed: "plane2")
         flight = SKSpriteNode(texture: flightTexture)
         flight.position = CGPoint(x: self.frame.midX, y: self.frame.minY+flight.size.height)
+        flight.zPosition = 10.0
         flight.setScale(0.5)
         flight.physicsBody = SKPhysicsBody(texture: flightTexture, size: flight.size)
         flight.physicsBody?.affectedByGravity = false
@@ -57,6 +59,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         flight.physicsBody?.collisionBitMask = physicsBodyNumbers.emptyNumber
         flight.physicsBody?.contactTestBitMask = physicsBodyNumbers.cloudNumber
         self.addChild(flight)
+        
+        labelScore = SKLabelNode(fontNamed:"ArialMT")
+        labelScore.position = CGPoint(x: self.frame.midX, y: self.frame.midY)
+        labelScore.text = "YOUR SCORE"
+        labelScore.fontSize = 18;
+        labelScore.fontColor = SKColor.black
+        
         
         
         cloudTimer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(addCloud), userInfo: nil, repeats: true)
@@ -70,6 +79,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let cloudTexture = SKTexture(imageNamed: "cloud2")
         let cloud = SKSpriteNode(texture: cloudTexture)
         cloud.setScale(0.5)
+        cloud.zPosition = 5.0
         cloud.physicsBody = SKPhysicsBody(texture: cloudTexture, size: cloud.size)
         cloud.physicsBody?.affectedByGravity = false
         cloud.physicsBody?.categoryBitMask = physicsBodyNumbers.cloudNumber

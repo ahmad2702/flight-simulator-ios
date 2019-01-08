@@ -10,10 +10,17 @@ import SpriteKit
 
 class MainMenu: SKScene {
     
+    var logo = SKSpriteNode()
     let playButton = SKSpriteNode(imageNamed: "play")
     let scoreButton = SKSpriteNode(imageNamed: "high_scores")
     
     override func didMove(to view: SKView) {
+        
+        let backgroundTexture = SKTexture(imageNamed: "logo")
+        logo = SKSpriteNode(texture: backgroundTexture)
+        logo.setScale(0.5)
+        logo.position = CGPoint(x: self.frame.midX, y: self.frame.maxY-150)
+        self.addChild(logo)
         
         playButton.position = CGPoint(x: self.frame.midX, y: self.frame.midY)
         playButton.setScale(0.2)
