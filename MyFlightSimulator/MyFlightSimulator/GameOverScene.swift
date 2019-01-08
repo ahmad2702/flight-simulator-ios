@@ -17,6 +17,7 @@ class GameOverScene: SKScene {
     func setScore(number: Double){
         
         score = number
+        Scores.updateScores(newScore: number)
         
     }
     
