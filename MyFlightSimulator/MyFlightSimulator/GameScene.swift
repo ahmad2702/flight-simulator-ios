@@ -15,8 +15,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var flight = SKSpriteNode()
     
     var cloudTimer = Timer()
+    var flightTimer = Timer()
     
     var score: Int = 0
+    
+    var nullSpeed: Double = 235.0       // in km/h
+    var bremse: Double = 1/4            //
+    var currentSpeed: Double = 847.0    // in km/h
+    var currentTime: Int = 0            // in Sekunden
+    var maxTime: Int = 30               // in Sekunden
+    var distance: Double = 0            // in km
+    
     
     struct physicsBodyNumbers{
         static let flightNumber: UInt32 = 0b1 // 1
@@ -51,7 +60,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         
         cloudTimer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(addCloud), userInfo: nil, repeats: true)
-
+        flightTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(checkDistance), userInfo: nil, repeats: true)
         
 
     }
@@ -90,7 +99,21 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
     }
 
-    
+    func gameOver(explicit: Bool){
+        if (explicit != true) {
+            if(currentSpeed >= nullSpeed) {
+                return
+            }
+        }
+        
+        self.removeAllActions()
+        self.removeAllChildren()
+        currentTime = maxTime + 1
+        let gameOverScene = GameOverScene(size: self.size)
+        gameOverScene.setScore(number: distance)
+        self.view?.presentScene(gameOverScene)
+        
+    }
     
     func didBegin(_ contact: SKPhysicsContact) {
         //print("Kontakt!")
@@ -113,14 +136,32 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             getContactFlightVSCloud(flight: node1 as! SKSpriteNode, cloud: node2 as! SKSpriteNode)
             node2.removeFromParent()
             score += 1
-            print(score)
+            currentSpeed = currentSpeed - currentSpeed * bremse
+            gameOver(explicit: false)
+            //print(score)
         default:
             print("----")
         }
         
         //self.flight.colorBlendFactor = 0.5
     }
+    
+    
+    @objc func checkDistance(){
 
+        if (currentTime <= maxTime){
+            let currentSpeedInMeter: Double = currentSpeed*10/36
+            let distanceInMeter = currentSpeedInMeter * Double(currentTime)
+            distance = distance + distanceInMeter / 1000
+            print("Time: \(currentTime), Distance: \(distance), Speed: \(currentSpeed)")
+            currentTime += 1
+        } else {
+            gameOver(explicit: true)
+        }
+        
+        
+    }
+    
     
     override func update(_ currentTime: TimeInterval) {
         // Called before each frame is rendered
