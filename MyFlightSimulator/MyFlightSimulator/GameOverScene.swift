@@ -12,7 +12,7 @@ class GameOverScene: SKScene {
     
     var score: Double = 0
     
-    let button = SKSpriteNode(imageNamed: "home_button")
+    let button = SKSpriteNode(imageNamed: "main_menu")
     
     func setScore(number: Double){
         
