@@ -11,7 +11,7 @@ import Foundation
 class Scores {
     
     static let defaults = UserDefaults.standard
-    static let dataName: String = "data_ccc1"
+    static let dataName: String = "data_SSSS"
     
     static let max: Int = 10
     static var highScores = [Double](repeating: 0, count: max)
@@ -63,43 +63,6 @@ class Scores {
         
         saveData()
     }
-    
-    
-    
-    
-    
-    
-    
-    static func testSave(){
-        let defaultsA = UserDefaults.standard
-        let dataNameA: String = "data_test3"
-        
-        let arrayT = [Double]([1.0, 2.2, 3.2])
-        var stringA = arrayT.description
-        stringA = stringA.replacingOccurrences(of: "[", with: "")
-        stringA = stringA.replacingOccurrences(of: "]", with: "")
-        
-        defaultsA.set(stringA, forKey: dataNameA)
-    }
-    
-    static func testGet(){
-        let defaultsA = UserDefaults.standard
-        let dataNameA: String = "data_test4"
-        
-        defaultsA.synchronize()
-        if (defaultsA.object(forKey: dataNameA) == nil){
-            print("No data found.")
-        }else{
-            let text = defaultsA.object(forKey: dataNameA) as! String
-            let array = text.components(separatedBy: ",")
-            var ddd = [Double](repeating: 0, count: max)
-            for (index, value) in array.enumerated(){
-                ddd[index] = Double(value.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines))!
-            }
-            print(ddd)
-        }
-    }
-    
     
     
 }

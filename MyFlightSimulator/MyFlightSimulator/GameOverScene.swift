@@ -19,7 +19,6 @@ class GameOverScene: SKScene {
     }
     
     override func didMove(to view: SKView) {
-        
         let label = SKLabelNode(fontNamed:"ArialMT")
         label.position = CGPoint(x: self.frame.midX, y: self.frame.midY)
         label.text = "YOUR SCORE"
@@ -43,7 +42,6 @@ class GameOverScene: SKScene {
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        
         for touch in touches{
             
             let locationUser = touch.location(in: self)
@@ -56,7 +54,6 @@ class GameOverScene: SKScene {
             }
             
         }
-        
     }
 
 

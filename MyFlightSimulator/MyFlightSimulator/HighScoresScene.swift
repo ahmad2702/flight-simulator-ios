@@ -13,7 +13,6 @@ class HighScoresScene: SKScene {
     let button = SKSpriteNode(imageNamed: "main_menu")
     
     override func didMove(to view: SKView) {
-        
         let label = SKLabelNode(fontNamed:"ArialMT")
         label.position = CGPoint(x: self.frame.midX, y: self.frame.maxY-130)
         label.text = "HIGH SCORES"
@@ -42,9 +41,7 @@ class HighScoresScene: SKScene {
 
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        
         for touch in touches{
-            
             let locationUser = touch.location(in: self)
             
             if (atPoint(locationUser) == button){
@@ -54,7 +51,6 @@ class HighScoresScene: SKScene {
             }
             
         }
-        
     }
 
 

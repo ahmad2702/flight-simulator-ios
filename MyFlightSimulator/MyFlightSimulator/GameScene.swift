@@ -24,7 +24,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     var score: Int = 0
     var nullSpeed: Double = 235.0       // in km/h
-    var bremse: Double = 1/4            //
+    var bremse: Double = 1/4            // == 25%
     var currentSpeed: Double = 847.0    // in km/h
     var currentTime: Int = 0            // in Sekunden
     var maxTime: Int = 120              // in Sekunden
@@ -70,12 +70,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         labelScore.fontColor = SKColor.white
         self.addChild(labelScore)
         
-        
         startTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(startWaitTimer), userInfo: nil, repeats: true)
-        //cloudTimer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(addCloud), userInfo: nil, repeats: true)
-        //flightTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(checkDistance), userInfo: nil, repeats: true)
-        
-
     }
     
     @objc func startWaitTimer(){
@@ -97,7 +92,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     @objc func addCloud(){
-        
         let cloudTexture = SKTexture(imageNamed: "cloud2")
         let cloud = SKSpriteNode(texture: cloudTexture)
         cloud.setScale(0.5)
@@ -113,7 +107,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         moveDown.speed = 1.0
         let delete = SKAction.removeFromParent()
         cloud.run(SKAction.sequence([moveDown, delete]))
-        
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -126,9 +119,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func getContactFlightVSCloud(flight: SKSpriteNode, cloud: SKSpriteNode){
-        
         flight.run(SKAction.repeat(SKAction.sequence([SKAction.fadeAlpha(to: 0.1, duration: 0.1), SKAction.fadeAlpha(to: 1.0, duration: 0.1)]), count: 5))
-        
     }
 
     func gameOver(explicit: Bool){
@@ -144,12 +135,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let gameOverScene = GameOverScene(size: self.size)
         gameOverScene.setScore(number: distance)
         self.view?.presentScene(gameOverScene)
-        
     }
     
     func didBegin(_ contact: SKPhysicsContact) {
-        //print("Kontakt!")
-        
         let contactMask = contact.bodyA.categoryBitMask | contact.bodyB.categoryBitMask
         
         switch contactMask {
@@ -171,35 +159,31 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             let tmpCurrentSpeed = currentSpeed - currentSpeed * bremse
             currentSpeed = Double(round(1000*tmpCurrentSpeed)/1000)
             gameOver(explicit: false)
-            //print(score)
         default:
             print("----")
         }
-        
-        //self.flight.colorBlendFactor = 0.5
     }
     
     
     @objc func checkDistance(){
-
         if (currentTime <= maxTime){
             let currentSpeedInMeter: Double = currentSpeed*10/36
-            let distanceInMeter = currentSpeedInMeter //* Double(currentTime)
+            let distanceInMeter = currentSpeedInMeter
             let tmpDistance = distance + distanceInMeter / 1000
             distance = Double(round(1000*tmpDistance)/1000)
             let text:String = "Time: \(currentTime)/\(maxTime)s, Distance: \(distance) km, Speed: \(currentSpeed) km/h"
             labelScore.text = text
-            print(text)
+            //print(text)
             currentTime += 1
         } else {
             gameOver(explicit: true)
         }
-        
-        
     }
     
     
     override func update(_ currentTime: TimeInterval) {
-        // Called before each frame is rendered
+
     }
+    
+    
 }
