@@ -10,14 +10,37 @@ import Foundation
 
 class Scores {
     
-    static var highScores = [Double]([1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9, 1.99])
-
-    static func getAllScores() -> Array<Double>{
-        highScores.sort(by: >)
-        return highScores
+    static let defaults = UserDefaults.standard
+    static let dataName: String = "data_ccc1"
+    
+    static let max: Int = 10
+    static var highScores = [Double](repeating: 0, count: max)
+    
+    static func saveData(){
+        var stringA = highScores.description
+        stringA = stringA.replacingOccurrences(of: "[", with: "")
+        stringA = stringA.replacingOccurrences(of: "]", with: "")
+        
+        defaults.set(stringA, forKey: dataName)
+    }
+    
+    static func getDataFromCore(){
+        defaults.synchronize()
+        
+        if (defaults.object(forKey: dataName) == nil){
+            saveData()
+        }else{
+            let text = defaults.object(forKey: dataName) as! String
+            let array = text.components(separatedBy: ",")
+            for (index, value) in array.enumerated(){
+                highScores[index] = Double(value.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines))!
+            }
+        }
     }
     
     static func printAllData() -> String {
+        getDataFromCore()
+
         highScores.sort(by: >)
         
         var result:String = ""
@@ -28,15 +51,55 @@ class Scores {
     }
     
     static func updateScores(newScore: Double){
+        getDataFromCore()
+        
         highScores.sort(by: <)
         
         if(newScore > highScores[0] && newScore < highScores[highScores.count-1]){
             highScores[0] = newScore
-            print("kleiner und mitte")
         } else if (newScore > highScores[highScores.count-1]){
-            highScores[highScores.count-1] = newScore
+            highScores[0] = newScore
+        }
+        
+        saveData()
+    }
+    
+    
+    
+    
+    
+    
+    
+    static func testSave(){
+        let defaultsA = UserDefaults.standard
+        let dataNameA: String = "data_test3"
+        
+        let arrayT = [Double]([1.0, 2.2, 3.2])
+        var stringA = arrayT.description
+        stringA = stringA.replacingOccurrences(of: "[", with: "")
+        stringA = stringA.replacingOccurrences(of: "]", with: "")
+        
+        defaultsA.set(stringA, forKey: dataNameA)
+    }
+    
+    static func testGet(){
+        let defaultsA = UserDefaults.standard
+        let dataNameA: String = "data_test4"
+        
+        defaultsA.synchronize()
+        if (defaultsA.object(forKey: dataNameA) == nil){
+            print("No data found.")
+        }else{
+            let text = defaultsA.object(forKey: dataNameA) as! String
+            let array = text.components(separatedBy: ",")
+            var ddd = [Double](repeating: 0, count: max)
+            for (index, value) in array.enumerated(){
+                ddd[index] = Double(value.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines))!
+            }
+            print(ddd)
         }
     }
+    
     
     
 }
